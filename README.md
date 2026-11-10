@@ -1,5 +1,7 @@
 # DeepSeek Search Skill
 
+简体中文 | [English](README.en.md)
+
 让 Codex、Claude Code、OpenCode 等支持 `SKILL.md` 的 Agent 调用 DeepSeek 官方 Search / Fetch API：搜索网页返回结构化结果，抓取网页返回 Markdown 正文。
 
 - 零依赖：只需 Node.js 18+，无第三方包
@@ -81,6 +83,8 @@ node scripts/deepseek_search.mjs search "DeepSeek" --json
 deepseek-search/
 ├── SKILL.md                     技能说明与使用策略
 ├── README.md
+├── README.en.md                英文说明
+├── LICENSE                      MIT 许可证
 ├── agents/openai.yaml           UI 元数据与自动调用策略
 ├── references/api.md            API 字段、错误码、计费与限速
 └── scripts/

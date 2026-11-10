@@ -98,4 +98,6 @@ Search 与 Fetch 均为只读请求。每次成功调用计费 0.005 元（5 元
 
 ## 参考
 
+- `README.md` / `README.en.md`：中文与英文安装说明
+- `LICENSE`：MIT 许可证
 - `references/api.md`：完整字段、响应结构、错误码、计费、限速与 curl 示例
