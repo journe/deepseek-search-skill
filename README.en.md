@@ -87,10 +87,40 @@ deepseek-search/
 ├── LICENSE                      MIT
 ├── agents/openai.yaml           UI metadata and implicit invocation policy
 ├── references/api.md            API fields, error codes, billing, rate limits
-└── scripts/
-    ├── deepseek_search.mjs      CLI entry point
-    └── credentials.mjs          Multi-source credential resolution
+├── scripts/
+│   ├── deepseek_search.mjs      CLI entry point
+│   ├── credentials.mjs          Multi-source credential resolution
+│   └── release.ps1              One-command release script
+└── tests/
+    ├── cli.test.mjs             CLI behavior tests
+    └── credentials.test.mjs     Credential resolution tests
 ```
+
+## Tests
+
+Tests start a local mock server and do not consume real API quota.
+
+```bash
+node tests/cli.test.mjs
+node tests/credentials.test.mjs
+```
+
+## Release
+
+The release script validates the repo, runs tests, creates a tag, pushes, and publishes a GitHub Release:
+
+```powershell
+# Dry run: validate and test only
+pwsh scripts/release.ps1 1.0.1 -DryRun
+
+# Publish with auto-generated notes
+pwsh scripts/release.ps1 1.0.1
+
+# Publish with custom notes
+pwsh scripts/release.ps1 1.0.1 -NotesFile ./release-notes.md
+```
+
+Requirements: on `main`, clean working tree, tag must not exist, and `gh` must be authenticated.
 
 ## Error codes
 

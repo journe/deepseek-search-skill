@@ -82,15 +82,45 @@ node scripts/deepseek_search.mjs search "DeepSeek" --json
 ```text
 deepseek-search/
 ├── SKILL.md                     技能说明与使用策略
-├── README.md
-├── README.en.md                英文说明
+├── README.md                    中文说明
+├── README.en.md                 英文说明
 ├── LICENSE                      MIT 许可证
 ├── agents/openai.yaml           UI 元数据与自动调用策略
 ├── references/api.md            API 字段、错误码、计费与限速
-└── scripts/
-    ├── deepseek_search.mjs      CLI 入口
-    └── credentials.mjs          多来源凭据解析
+├── scripts/
+│   ├── deepseek_search.mjs      CLI 入口
+│   ├── credentials.mjs          多来源凭据解析
+│   └── release.ps1              一键发布脚本
+└── tests/
+    ├── cli.test.mjs             CLI 行为测试
+    └── credentials.test.mjs     凭据解析测试
 ```
+
+## 测试
+
+测试会在本地启动 mock 服务，不消耗真实 API 额度。
+
+```bash
+node tests/cli.test.mjs
+node tests/credentials.test.mjs
+```
+
+## 发布
+
+使用发布脚本自动校验、跑测试、打标签并创建 Release：
+
+```powershell
+# 预演：只校验并跑测试
+pwsh scripts/release.ps1 1.0.1 -DryRun
+
+# 正式发布（自动生成发布说明）
+pwsh scripts/release.ps1 1.0.1
+
+# 使用自定义发布说明
+pwsh scripts/release.ps1 1.0.1 -NotesFile ./release-notes.md
+```
+
+脚本要求：在 `main` 分支、工作区干净、标签不存在、`gh` 已登录。
 
 ## 错误码
 
